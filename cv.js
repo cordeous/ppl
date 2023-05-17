@@ -28,7 +28,7 @@ class CurriculumVitae {
       });
     }
   
-    addSkill(skill, proficiency) {
+    addSkill(skill) {
       this.skills.push({
         skill: skill,
       });
@@ -100,19 +100,20 @@ class CurriculumVitae {
           html += `<p>None</p>`;
         } else {
           html += `<ul>`;
-      
+        
           this.skills.forEach((skill) => {
             html += `
-              <li>${skill.skill} - Proficiency: ${skill.proficiency}</li>
+              <li>${skill.skill}</li>
             `;
           });
-      
+        
           html += `</ul>`;
         }
-      
+        
         html += `</section>`;
-      
+        
         return html;
+        
       }
       
   
