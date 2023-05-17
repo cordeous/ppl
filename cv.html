@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Curriculum Vitae</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: #f1f1f1;
+       }
+
+       header {
+           background-color: #333;
+           color: #fff;
+           padding: 20px;
+           text-align: center;
+       }
+
+       h1 {
+           margin: 0;
+       }
+
+       nav {
+           background-color: #555;
+           color: #fff;
+           padding: 10px;
+       }
+
+       nav ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+           display: flex;
+           justify-content: center;
+       }
+
+       nav ul li {
+           margin: 0 10px;
+       }
+
+       nav ul li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+       main {
+           padding: 20px;
+       }
+
+       section {
+           margin-bottom: 30px;
+       }
+
+       section h2, section h3 {
+           color: #333;
+           margin-top: 0;
+       }
+
+       ul {
+           padding-left: 20px;
+       }
+
+       footer {
+           background-color: #333;
+           color: #fff;
+           padding: 10px;
+           text-align: center;
+       }
+
+       .cv-container {
+           max-width: 800px;
+           margin: 0 auto;
+           background-color: #fff;
+           padding: 20px;
+           border-radius: 4px;
+           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+       }
+
+       .cv-container h2 {
+           margin-bottom: 10px;
+       }
+
+       .cv-container p {
+           margin: 0;
+       }
+
+       .cv-container h3 {
+           margin-top: 20px;
+           margin-bottom: 10px;
+       }
+
+       .cv-container ul {
+           margin: 0;
+           padding: 0;
+       }
+
+       .cv-container li {
+           margin-bottom: 5px;
+       }
+
+       .cv-buttons {
+           margin-top: 20px;
+       }
+
+       .cv-buttons button {
+           padding: 10px 20px;
+           border: none;
+           border-radius: 4px;
+           font-size: 14px;
+           background-color: #555;
+           color: #fff;
+           cursor: pointer;
+       }
+
+       .cv-buttons button:hover {
+           background-color: #333;
+       }
+   </style>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+   <script src="cv.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Curriculum Vitae</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="web.html">Home</a></li>
+            <li><a href="php-programs.html">PHP Programs</a></li>
+            <li><a href="js-programs.html" onclick="scrollToSection('program-js')">JS Programs</a></li>
+            <li><a href="cv.html" onclick="scrollToSection('cv')">CV</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="cv">
+            <h2>Mi Curriculum Vitae</h2>
+            <div id="cvContainer" class="cv-container"></div>
+            <div class="cv-buttons">
+                <button onclick="downloadPDF(myCV.generatePDF())">Descargar CV (PDF)</button>
+                <button id="printButton">Imprimir CV (HTML)</button>
+            </div>
+        </section>
+    </main>
+
+
+
+    
+    <footer>
+        <p>© 2023 Antonio Jardon Salas</p>
+    </footer>
+
+    <script>
+        // Add the event listeners to the buttons after the page has loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const myCV = new CurriculumVitae(
+      'Antonio Jardon Salas',
+      'Organized and dependable candidate successful at managing multiple priorities with a positive attitude. Highly motivated and detail-oriented individual with excellent problem-solving and analytical skills. Committed to contributing skills and knowledge to a dynamic organization and am confident in the ability to work collaboratively with a team to achieve success.',
+      'antonio.jardon@upr.edu'
+    );
+  
+    // Add education
+    myCV.addEducation(
+      'University of Puerto Rico, Mayaguez Campus',
+      'Bachelor of Science',
+      'Computer Science',
+      '08/2019',
+      '05/2024'
+    );
+  
+    // Add experience
+    myCV.addExperience(
+      'Susan G Komen',
+      'Volunteer',
+      '10/2021',
+      '10/2021',
+      'Collaborated with team of volunteers to ensure smooth and successful event, including setting up and managing water stations, directing runners and walkers along the route, and cheering on participants.'
+    );
+  
+    myCV.addExperience(
+      'Claro',
+      'Sales Associate',
+      '06/2017',
+      '07/2019',
+      'Assisted customers with inquiries, provided product information and recommendations, and completed sales transactions to meet individual and team sales targets.'
+    );
+  
+    // Add skills
+    myCV.addSkill('Microsoft Office (Excel, Word, PowerPoint)');
+    myCV.addSkill('Interpersonal Communication Skills');
+    myCV.addSkill('Team Player');
+    myCV.addSkill('Website design and development');
+    myCV.addSkill('Critical Thinking');
+    myCV.addSkill('Fluent in English and Spanish');
+    myCV.addSkill('Adaptability');
+            // Generate HTML representation of the CV and display it in the page
+            const cvContainer = document.getElementById('cvContainer');
+            cvContainer.innerHTML = myCV.generateHTML();
+
+   // Add event listener for the "Download PDF" button
+const downloadButton = document.querySelector('#cv button:first-of-type');
+downloadButton.addEventListener('click', () => {
+  const pdf = myCV.generatePDF();
+  downloadPDF(pdf);
+});
+
+
+             // Add event listener for the "Print HTML" button
+    const printButton = document.getElementById('printButton');
+    printButton.addEventListener('click', () => {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.open();
+      printWindow.document.write(myCV.generateHTML());
+      printWindow.document.close();
+      printWindow.print();
+    });
+
+    // Function to download the generated PDF
+    function downloadPDF(pdf) {
+  pdf.save('curriculum_vitae.pdf');
+}
+
+
+  });
+
+    </script>
+     
+</body>
+</html>

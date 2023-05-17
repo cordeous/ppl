@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Programs</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: #f1f1f1;
+       }
+
+       header {
+           background-color: #333;
+           color: #fff;
+           padding: 20px;
+           text-align: center;
+       }
+
+       h1 {
+           margin: 0;
+       }
+
+       nav {
+           background-color: #555;
+           color: #fff;
+           padding: 10px;
+       }
+
+       nav ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+           display: flex;
+           justify-content: center;
+       }
+
+       nav ul li {
+           margin: 0 10px;
+       }
+
+       nav ul li a {
+           color: #fff;
+           text-decoration: none;
+       }
+
+       main {
+           padding: 20px;
+       }
+
+       section {
+           margin-bottom: 30px;
+       }
+
+       section h2, section h3 {
+           color: #333;
+           margin-top: 0;
+       }
+
+       form {
+           margin-bottom: 10px;
+       }
+
+       input[type="number"],
+       input[type="text"],
+       input[type="submit"],
+       button {
+           padding: 10px;
+           border: none;
+           border-radius: 4px;
+           font-size: 14px;
+       }
+
+       input[type="submit"],
+       button {
+           background-color: #555;
+           color: #fff;
+           cursor: pointer;
+       }
+
+       input[type="submit"]:hover,
+       button:hover {
+           background-color: #333;
+       }
+
+       label {
+           font-weight: bold;
+           display: block;
+           margin-bottom: 5px;
+       }
+
+       ul {
+           padding-left: 20px;
+       }
+
+       footer {
+           background-color: #333;
+           color: #fff;
+           padding: 10px;
+           text-align: center;
+       }
+   </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Programs</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="web.html">Home</a></li>
+            <li><a href="php-programs.html">PHP Programs</a></li>
+            <li><a href="js-programs.html" onclick="scrollToSection('program-js')">JS Programs</a></li>
+            <li><a href="cv.html" onclick="scrollToSection('cv')">CV</a></li>
+        </ul>
+    </nav>
+
+<main>
+    <section>
+        <h2>Programa JavaScript 1 - Verificación de número par o impar</h2>
+        <input type="number" id="number" placeholder="Ingrese un número" required>
+        <button onclick="verificarNumero()">Verificar</button>
+        <div>
+            <label id="result1"></label>
+        </div>
+    </section>
+
+    <section>
+        <h2>Programa JavaScript 2 - Suma de dos números</h2>
+        <input type="number" id="num1" placeholder="Ingrese el primer número" required>
+        <input type="number" id="num2" placeholder="Ingrese el segundo número" required>
+        <button onclick="sumarNumeros()">Sumar</button>
+        <div>
+            <label id="result2" style="display: none;"></label>
+        </div>
+    </section>
+
+    <section>
+        <h2>Programa JavaScript 3 - Conversión de Celsius a Fahrenheit</h2>
+        <label for="celsius">Temperatura en Celsius:</label>
+        <input type="number" id="celsius" required>
+        <button onclick="convertirCF()">Convertir</button>
+        <br>
+        <label for="fahrenheit">Temperatura en Fahrenheit:</label>
+        <input type="number" id="fahrenheit" readonly>
+    </section>
+
+    <script>
+        // JavaScript Program 1 - Verificación de número par o impar
+        function verificarNumero() {
+            var number = document.getElementById("number").value;
+            var resultLabel = document.getElementById("result1");
+            if (number % 2 === 0) {
+                resultLabel.textContent = number + " es un número par.";
+            } else {
+                resultLabel.textContent = number + " es un número impar.";
+            }
+        }
+
+        // JavaScript Program 2 - Suma de dos números
+        function sumarNumeros() {
+            var num1 = parseInt(document.getElementById("num1").value);
+            var num2 = parseInt(document.getElementById("num2").value);
+            var suma = num1 + num2;
+            var resultLabel = document.getElementById("result2");
+            resultLabel.textContent = "La suma de " + num1 + " y " + num2 + " es: " + suma;
+            resultLabel.style.display = "block";
+        }
+
+        // JavaScript Program 3 - Conversión de Celsius a Fahrenheit
+        function convertirCF() {
+            var celsius = document.getElementById("celsius").value;
+            var fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById("fahrenheit").value = fahrenheit;
+        }
+    </script>
+    </main>
+
+    
+    <footer>
+        <p>© 2023 Antonio Jardon Salas</p>
+    </footer>
+</body>
+
+</html>

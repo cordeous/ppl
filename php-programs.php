@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PHP Programs</title>
+    <style>
+         /* Add your CSS styles here */
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            background-color: #555;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        section h2, section h3 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="submit"],
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"],
+        button {
+            background-color: #555;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PHP Programs</h1>
+    </header>
+
+    <main>
+        <section id="programa-php-1">
+            <h2>Programa PHP 1 - Verificación de número par o impar</h2>
+            <form method="get" action="">
+                <input type="number" name="num" placeholder="Ingrese un número" required>
+                <input type="submit" value="Verificar">
+            </form>
+        
+            <?php
+            if (isset($_GET['num'])) {
+                $number = $_GET['num'];
+                if ($number % 2 == 0) {
+                    echo "$number es un número par.";
+                } else {
+                    echo "$number es un número impar.";
+                }
+            }
+            ?>
+        </section>
+
+        <section id="programa-php-2">
+            <h2>Programa PHP 2 - Suma de dos números</h2>
+            <form method="post" action="">
+                <input type="number" name="num1" placeholder="Ingrese el primer número" required>
+                <input type="number" name="num2" placeholder="Ingrese el segundo número" required>
+                <input type="submit" value="Sumar">
+            </form>
+        
+            <?php
+            if (isset($_POST['num1']) && isset($_POST['num2'])) {
+                $num1 = $_POST['num1'];
+                $num2 = $_POST['num2'];
+                $suma = $num1 + $num2;
+                echo "La suma de $num1 y $num2 es: $suma";
+            }
+            ?>
+        </section>
+
+        <section id="programa-php-3">
+            <h2>Programa PHP 3 - Conversión de Celsius a Fahrenheit</h2>
+            <form method="post" action="">
+                <label for="celsius">Temperatura en Celsius:</label>
+                <input type="number" name="celsius" required>
+                <input type="submit" value="Convertir">
+            </form>
+        
+            <?php
+            if (isset($_POST['celsius'])) {
+                $celsius = $_POST['celsius'];
+                $fahrenheit = ($celsius * 9/5) + 32;
+                echo "La temperatura en Fahrenheit es: $fahrenheit";
+            }
+            ?>
+        </section>
+    </main>
+</body>
+</html>
